@@ -9,7 +9,6 @@
           <b-navbar-nav>
             <nuxt-link v-if="$auth.loggedIn" :to="localePath('/admin/dashboard')">{{ $t('dashboard') }}</nuxt-link>
             <b-nav-item to="articles">Articles</b-nav-item>
-
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -36,7 +35,7 @@
               <b-dropdown-item to="/auth/register">register</b-dropdown-item>
               </template>
               <template v-if="$auth.loggedIn">
-                <b-dropdown-item to="/admin/dashboard">Profile</b-dropdown-item>
+                <b-dropdown-item to="/profile">Profile</b-dropdown-item>
                 <b-dropdown-item href="/auth/logout" @click.prevent="logout()">Sign Out</b-dropdown-item>
               </template>
             </b-nav-item-dropdown>

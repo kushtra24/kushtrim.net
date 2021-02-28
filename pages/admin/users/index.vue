@@ -1,10 +1,6 @@
 <template>
   <div class="container mt-5">
     <h3>Users</h3>
-<!--    <div v-for="user in users" :key="user.id">-->
-<!--      <nuxt-link :to="`/users/${user.id}`"> {{ user.name }}</nuxt-link>-->
-<!--    </div>-->
-
     <b-row>
       <b-col lg="5" class="my-1">
         <b-form-group
@@ -63,21 +59,6 @@
        <nuxt-link :to="`/admin/users/${row.item.id}`" > {{ row.value }} </nuxt-link>
       </template>
 
-      <template #cell(Action)="row">
-<!--        <nuxt-link :to="localePath('/admin/dashboard')" > <font-awesome-icon fas icon="ellipsis-v" /> </nuxt-link>-->
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <font-awesome-icon fas icon="ellipsis-v" />
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
-
-      </template>
-
     </b-table>
 
     <b-row>
@@ -117,10 +98,7 @@
               key: 'email', sortable: false
             },
             {
-              key: 'created_at', label: 'Registered', sortable: true
-            },
-            {
-              key: 'Action'
+              key: 'created_at', label: 'Registered', sortable: true, formatter: () => {return new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
             }
           ],
           currentPage: 1,
@@ -137,14 +115,7 @@
         }),
       },
       async fetch({store}) {
-        // try {
           await store.dispatch('users/ALL_USERS');
-          // this.isBusy = false
-        // }
-        // catch (e) {
-        //   console.log('dispatch to store not possible',);
-        //   this.isBusy = false
-        // }
       }
 
     }
